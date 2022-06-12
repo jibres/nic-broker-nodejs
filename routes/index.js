@@ -9,6 +9,10 @@ const curlSecret = 'secret/nic.pem'
 const apiURL = 'https://epp.nic.ir/submit';
 const curlAgent = 'Mozilla/5.0 (compatible; Jibres irnic/2.0; +https://jibres.com/bot)';
 
+// prepare request to irnic server
+const https = require('https');
+const axios = require('axios');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Jibres Nic Broker' });
@@ -17,12 +21,25 @@ router.get('/', function(req, res, next) {
   {
     try {
       const pemFile = fs.readFileSync(curlSecret, 'utf8')
-      // console.log(pemFile);
+
+      const httpsAgent = new https.Agent({
+        ca: pemFile
+      });
+
+      // send request to irnic
+      const response = axios.get(apiURL, { httpsAgent });
+
+      axios.post(apiURL, { httpsAgent })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+      // sample output
       res.json({test: "MrAdib"});
-      // pem file exist and 
-
-      
-
 
     } catch (err) {
       // console.error(err);
