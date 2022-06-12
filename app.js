@@ -19,6 +19,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// remove default powered-by and set Jibres
+// app.disable('x-powered-by');
+app.use(function (req, res, next) {
+  res.header("x-powered-by", "Jibres")
+  next()
+})
+
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
