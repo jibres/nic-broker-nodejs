@@ -1,8 +1,18 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  overflow:hidden;
 }
-
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  background-color: #c80a5a;
+  background: #c80a5a url(https://cdn.jibres.ir/logo/icon-white/svg/Jibres-Logo-icon-white.svg) no-repeat center center;
+  background-size: 70vh
+}
 a {
   color: #00B7FF;
 }
