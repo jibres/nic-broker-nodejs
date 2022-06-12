@@ -1,5 +1,23 @@
 {
   "dependencies": {
     "express": "^4.18.1"
-  }
+  },
+  "name": "nic-broker-nodejs",
+  "description": "A broker for nic connection",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jibres/nic-broker-nodejs.git"
+  },
+  "author": "Javad Adib",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jibres/nic-broker-nodejs/issues"
+  },
+  "homepage": "https://github.com/jibres/nic-broker-nodejs#readme"
 }
