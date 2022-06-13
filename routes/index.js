@@ -14,6 +14,7 @@ const https = require('https');
 const url = require('url');
 const axios = require('axios');
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Jibres Nic Broker' });
@@ -23,6 +24,7 @@ router.get('/', function(req, res, next) {
     const queryObject = url.parse(req.url, true).query;
     if(queryObject.token && queryObject.token === process.env.SECRET_KEY)
     {
+      console.log(req.body);
       try {
         const pemFile = fs.readFileSync(curlSecret, 'utf8')
   
@@ -31,7 +33,7 @@ router.get('/', function(req, res, next) {
         });
   
         // send request to irnic
-        const response = axios.get(apiURL, { httpsAgent });
+        // const response = axios.get(apiURL, { httpsAgent });
   
         // axios.post(apiURL, { httpsAgent })
         // .then(function (response) {
