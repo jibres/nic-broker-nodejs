@@ -24,24 +24,27 @@ router.get('/', function(req, res, next) {
     const queryObject = url.parse(req.url, true).query;
     if(queryObject.token && queryObject.token === process.env.SECRET_KEY)
     {
+      const requestData = req.body;
       console.log(req.body);
       try {
         const pemFile = fs.readFileSync(curlSecret, 'utf8')
-  
-        const httpsAgent = new https.Agent({
-          ca: pemFile
-        });
+        
+        const nicReqOpt = {
+          data: requestData,
+          httpsAgent: new https.Agent({ ca: pemFile })
+        };
+        
   
         // send request to irnic
-        // const response = axios.get(apiURL, { httpsAgent });
+        const response = axios.get(apiURL, { nicReqOpt });
   
-        // axios.post(apiURL, { httpsAgent })
-        // .then(function (response) {
-        //   console.log(response);
-        // })
-        // .catch(function (error) {
-        //   console.log(error);
-        // });
+        axios.post(apiURL, { nicReqOpt })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   
   
         // sample output
